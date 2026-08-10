@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Sealed Annals of Abaz</title>
+    <meta
+      name="description"
+      content="Recovered histories from the Library of Tærüș. The public archive is currently under seal."
+    />
+    <style>
+      :root {
+        --paper: #e8ddc5;
+        --paper-deep: #d5c39f;
+        --ink: #19140f;
+        --soft-ink: #574634;
+        --rule: rgba(25, 20, 15, 0.24);
+        --rule-strong: rgba(25, 20, 15, 0.45);
+        --red: #742d21;
+        --green: #264d39;
+        --gold: #8d6225;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(rgba(25, 20, 15, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(25, 20, 15, 0.035) 1px, transparent 1px),
+          var(--paper);
+        background-size: 34px 34px;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      ::selection {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .page-shell {
+        width: min(100%, 1240px);
+        margin: 0 auto;
+        padding: 16px 22px;
+      }
+
+      .site-head,
+      footer,
+      .ledger-head,
+      .ledger-row {
+        display: grid;
+        gap: 12px;
+      }
+
+      .site-head {
+        grid-template-columns: 1fr auto;
+        border: 1px solid var(--rule-strong);
+        border-bottom: 0;
+        background: rgba(232, 221, 197, 0.82);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--green);
+      }
+
+      .site-head p,
+      footer p,
+      .ledger-head p {
+        margin: 0;
+        padding: 12px 14px;
+      }
+
+      .site-head p + p {
+        border-left: 1px solid var(--rule);
+      }
+
+      .hero-image {
+        display: grid;
+        place-items: center;
+        overflow: visible;
+        border: 1px solid var(--rule-strong);
+        background-color: rgba(232, 221, 197, 0.9);
+        padding: clamp(6px, 0.9vw, 12px);
+      }
+
+      .hero-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(46vh, 500px);
+        object-fit: contain;
+      }
+
+      .intro-block {
+        border-right: 1px solid var(--rule-strong);
+        border-bottom: 1px solid var(--rule-strong);
+        border-left: 1px solid var(--rule-strong);
+        background: rgba(232, 221, 197, 0.9);
+        padding: clamp(24px, 3.2vw, 38px);
+      }
+
+      .kicker,
+      .label,
+      .ledger-head,
+      .ledger-row > p:first-child,
+      .ledger-row > p:last-child {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        text-transform: uppercase;
+      }
+
+      .kicker {
+        width: fit-content;
+        margin: 0 0 20px;
+        border: 1px solid var(--rule);
+        padding: 10px 12px;
+        color: var(--red);
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+      }
+
+      h1 {
+        max-width: 860px;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 6.7vw, 6.25rem);
+        font-weight: 500;
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .lede {
+        max-width: 1040px;
+        margin: 20px 0 0;
+        color: var(--soft-ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.22rem, 2.2vw, 1.55rem);
+        line-height: 1.55;
+      }
+
+      .launch-line {
+        max-width: 900px;
+        margin: 18px 0 0;
+        border-left: 2px solid var(--red);
+        padding-left: 18px;
+        color: var(--red);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+        line-height: 1.55;
+      }
+
+      .notice-grid {
+        display: grid;
+        border-right: 1px solid var(--rule-strong);
+        border-bottom: 1px solid var(--rule-strong);
+        border-left: 1px solid var(--rule-strong);
+      }
+
+      .notice-grid article {
+        padding: 20px 24px;
+        background: rgba(213, 195, 159, 0.42);
+      }
+
+      .notice-grid article + article {
+        border-top: 1px solid var(--rule);
+      }
+
+      .label {
+        margin: 0 0 10px;
+        color: var(--gold);
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+      }
+
+      h2,
+      h3 {
+        margin: 0;
+      }
+
+      h2 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 2rem;
+        font-weight: 500;
+      }
+
+      .notice-grid p:last-child {
+        max-width: 620px;
+        margin: 14px 0 0;
+        color: var(--soft-ink);
+        line-height: 1.65;
+      }
+
+      .recovery-log,
+      .ledger {
+        border-right: 1px solid var(--rule-strong);
+        border-bottom: 1px solid var(--rule-strong);
+        border-left: 1px solid var(--rule-strong);
+        background: rgba(232, 221, 197, 0.74);
+      }
+
+      .ledger-head {
+        grid-template-columns: 1fr auto;
+        border-bottom: 1px solid var(--rule);
+        color: var(--green);
+        font-size: 0.74rem;
+        letter-spacing: 0.16em;
+      }
+
+      .ledger-row {
+        grid-template-columns: 130px minmax(190px, 1fr) minmax(180px, 1fr) 110px;
+        align-items: baseline;
+        padding: 13px 14px;
+      }
+
+      .recovery-row {
+        display: grid;
+        grid-template-columns: 180px 130px minmax(0, 1fr);
+        gap: 12px;
+        align-items: baseline;
+        padding: 13px 14px;
+      }
+
+      .ledger-row + .ledger-row {
+        border-top: 1px solid var(--rule);
+      }
+
+      .recovery-row + .recovery-row {
+        border-top: 1px solid var(--rule);
+      }
+
+      .recovery-row p,
+      .ledger-row p {
+        margin: 0;
+        color: var(--soft-ink);
+        line-height: 1.45;
+      }
+
+      .recovery-row > p:first-child,
+      .recovery-row > p:nth-child(2),
+      .ledger-row > p:first-child {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        color: var(--green);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+
+      .ledger-row > p:last-child {
+        width: fit-content;
+        border: 1px solid var(--rule);
+        padding: 5px 7px;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+      }
+
+      .ledger-row > p:last-child[data-status="sealed"] {
+        color: var(--red);
+      }
+
+      .ledger-row > p:last-child[data-status="partial"] {
+        color: var(--green);
+      }
+
+      .ledger-row > p:last-child[data-status="queued"],
+      .ledger-row > p:last-child[data-status="pending"] {
+        color: var(--gold);
+      }
+
+      h3 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.18rem;
+        font-weight: 500;
+      }
+
+      footer {
+        grid-template-columns: 1fr auto;
+        border-right: 1px solid var(--rule-strong);
+        border-bottom: 1px solid var(--rule-strong);
+        border-left: 1px solid var(--rule-strong);
+        background: rgba(232, 221, 197, 0.82);
+        color: var(--soft-ink);
+        line-height: 1.55;
+      }
+
+      footer p:last-child {
+        border-left: 1px solid var(--rule);
+        color: var(--green);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      @media (min-width: 820px) {
+        .notice-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .notice-grid article + article {
+          border-top: 0;
+          border-left: 1px solid var(--rule);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page-shell {
+          padding: 12px;
+        }
+
+        .site-head,
+        .ledger-head,
+        .ledger-row,
+        .recovery-row,
+        footer {
+          grid-template-columns: 1fr;
+        }
+
+        .site-head p + p,
+        footer p:last-child {
+          border-left: 0;
+          border-top: 1px solid var(--rule);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="site-head">
+        <p>Library of Tærüș</p>
+        <p>Collection: The Sealed Annals of Abaz</p>
+      </header>
+
+      <section class="hero-image" aria-label="Painted annal sheet">
+        <img
+          alt="A hand-painted annal sheet showing an invented Abaz map, weather marks, crop studies, and gnat sketches"
+          src="./public/abaz-header-edited-map-transparent.png"
+        />
+      </section>
+
+      <section class="intro-block">
+        <p class="kicker">
+          The Library has been found. One collection is being catalogued.
+        </p>
+        <h1>The Sealed Annals of Abaz</h1>
+        <p class="lede">
+          Welcome to the Library of Tærüș (TAIR-oosh), a discovered vault
+          beneath the Kera Headlands. You are standing before one section of it:
+          the Sealed Annals of Abaz, a continental mass of nine kora-ranges on
+          the world of Orun Bara, within the Irunma system. It is suspected that
+          this collection holds records of the continent's species, cities,
+          weather systems, witnesses, failures, laws, and uncatalogued items
+          still under review.
+        </p>
+        <p class="launch-line">
+          This collection will open when enough Abazian fragments have been
+          catalogued to survive their first public reading.
+        </p>
+      </section>
+
+      <section class="notice-grid">
+        <article>
+          <p class="label">Current condition</p>
+          <h2>Library found</h2>
+          <p>
+            The larger Library of Tærüș has been located, but most of its
+            rooms remain unentered. This page marks the first collection chosen
+            for recovery: The Sealed Annals of Abaz.
+          </p>
+        </article>
+        <article>
+          <p class="label">Unsealing state</p>
+          <h2>Abaz records only</h2>
+          <p>
+            These records concern Abaz alone. Other shelves, vaults, and
+            catalogues within Tærüș remain unnamed until their contents begin
+            to surface.
+          </p>
+        </article>
+      </section>
+
+      <section class="ledger">
+        <div class="ledger-head">
+          <p>Unsealing Register</p>
+          <p>visible before launch</p>
+        </div>
+        <article class="ledger-row">
+          <p>SAA:UL:0001</p>
+          <h3>The Tærüș Door</h3>
+          <p>outer inscription recovered</p>
+          <p data-status="queued">queued</p>
+        </article>
+        <article class="ledger-row">
+          <p>SAA:WE:0472</p>
+          <h3>Blackwing Gnats of Lower Abaz</h3>
+          <p>weather-kin evidence stable</p>
+          <p data-status="partial">partial</p>
+        </article>
+        <article class="ledger-row">
+          <p>SAA:TR:0188</p>
+          <h3>Lamp Men</h3>
+          <p>term found in six ledgers</p>
+          <p data-status="sealed">sealed</p>
+        </article>
+        <article class="ledger-row">
+          <p>SAA:OR:0000</p>
+          <h3>Start Here</h3>
+          <p>orientation record not issued</p>
+          <p data-status="pending">pending</p>
+        </article>
+      </section>
+
+      <section class="recovery-log">
+        <div class="ledger-head">
+          <p>Public Recovery Log</p>
+          <p>Year 0 PU</p>
+        </div>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 001</p>
+          <p>SAA:OR:0000</p>
+          <p>
+            The recovered body of Abaz records was entered under the title The
+            Sealed Annals of Abaz.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 001</p>
+          <p>SAA:UL:0001</p>
+          <p>
+            The Library of Tærüș was confirmed as the containing vault. The
+            Sealed Annals of Abaz were assigned to one named collection within
+            it.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 001</p>
+          <p>SAA:DS:0001</p>
+          <p>
+            A display standard was opened to govern public record tone, colour
+            use, image treatment, and release states.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 001</p>
+          <p>LOT:PR:0001</p>
+          <p>
+            A parent-level personnel class was reserved for public profiles
+            attached to the Tærüș recovery team.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 001</p>
+          <p>SAA:OR:0002</p>
+          <p>
+            Abaz was entered into the public orientation record as a
+            continental mass of nine kora-ranges on Orun Bara, within the
+            Irunma system.
+          </p>
+        </article>
+      </section>
+
+      <footer>
+        <p>
+          This holding page will remain in place until the first Abaz records
+          are catalogued and cleared for public release.
+        </p>
+        <p>thesealedannalsofabaz.com / sealedannals.com</p>
+      </footer>
+    </main>
+  </body>
+</html>
