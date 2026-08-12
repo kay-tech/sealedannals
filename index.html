@@ -154,6 +154,65 @@
         line-height: 1.55;
       }
 
+      .access-routes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 22px 0 0;
+      }
+
+      .access-routes a {
+        border: 1px solid var(--rule);
+        padding: 9px 11px;
+        color: var(--green);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.13em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .access-routes a:hover,
+      .access-routes a:focus {
+        background: rgba(38, 77, 57, 0.11);
+        outline: none;
+      }
+
+      .public-routes {
+        border-right: 1px solid var(--rule-strong);
+        border-bottom: 1px solid var(--rule-strong);
+        border-left: 1px solid var(--rule-strong);
+        background: rgba(213, 195, 159, 0.28);
+        padding: 20px 24px;
+      }
+
+      .route-list {
+        display: grid;
+        gap: 10px;
+        margin: 14px 0 0;
+      }
+
+      .route-list a,
+      .recovery-row a {
+        color: var(--green);
+        text-decoration-color: rgba(38, 77, 57, 0.36);
+        text-underline-offset: 3px;
+      }
+
+      .route-list a:hover,
+      .route-list a:focus,
+      .recovery-row a:hover,
+      .recovery-row a:focus {
+        color: var(--red);
+        outline: none;
+      }
+
+      .route-list p {
+        margin: 0;
+        color: var(--soft-ink);
+        line-height: 1.5;
+      }
+
       .notice-grid {
         display: grid;
         border-right: 1px solid var(--rule-strong);
@@ -359,6 +418,59 @@
           This collection will open when enough Abazian fragments have been
           catalogued to survive their first public reading.
         </p>
+        <nav class="access-routes" aria-label="Public access routes">
+          <a href="https://libraryoftaerus.substack.com">
+            Open Dispatches
+          </a>
+          <a href="https://libraryoftaerus.substack.com/p/lot-gf-0001-guild-field-manual">
+            Read LOT:GF:0001
+          </a>
+          <a href="https://libraryoftaerus.substack.com/p/lotin0002-first-human-facing-catalogue">
+            Read LOT:IN:0002
+          </a>
+          <a href="https://libraryoftaerus.substack.com/p/lotin0003-why-some-records-remain">
+            Read LOT:IN:0003
+          </a>
+          <a href="https://www.youtube.com/watch?v=mozAKWVXCSo">
+            Watch LOT:IN:0003
+          </a>
+        </nav>
+      </section>
+
+      <section class="public-routes">
+        <p class="label">Public routes</p>
+        <h2>Issued records</h2>
+        <div class="route-list">
+          <p>
+            <a href="https://libraryoftaerus.substack.com/p/lot-gf-0001-guild-field-manual">
+              LOT:GF:0001: Guild Field Manual
+            </a>
+          </p>
+          <p>
+            <a href="https://libraryoftaerus.substack.com/p/lotin0002-first-human-facing-catalogue">
+              LOT:IN:0002: First Human-Facing Catalogue Page
+            </a>
+          </p>
+          <p>
+            <a href="https://libraryoftaerus.substack.com/p/lotin0003-why-some-records-remain">
+              LOT:IN:0003: Why Some Records Remain Sealed
+            </a>
+          </p>
+          <p>
+            <a href="https://www.youtube.com/watch?v=mozAKWVXCSo">
+              LOT:IN:0003: Why Some Records Remain Sealed, video dispatch
+            </a>
+          </p>
+          <p>
+            LOT:IN:0003: Why Some Records Remain Sealed, audio dispatch
+            available through public podcast directories.
+          </p>
+          <p>
+            <a href="https://www.youtube.com/@thelibraryoft%C3%A6r%C3%BC%C8%99">
+              The Library of Tærüș on YouTube
+            </a>
+          </p>
+        </div>
       </section>
 
       <section class="notice-grid">
@@ -418,6 +530,68 @@
           <p>Public Recovery Log</p>
           <p>Year 0 PU</p>
         </div>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:VD:0001</p>
+          <p>
+            A <a href="https://www.youtube.com/watch?v=mozAKWVXCSo">video
+            dispatch for LOT:IN:0003</a> was issued under Public Recovery
+            Dispatches.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:DN:0005</p>
+          <p>
+            A single 4K visual plate was prepared for LOT:IN:0003 so the
+            audio dispatch can remain steady for the full video record.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:DN:0006</p>
+          <p>
+            The Library entrance visual standard was revised toward bright
+            recovery-site photography with obsolete 6700s machinery.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:IN:0002</p>
+          <p>
+            <a href="https://libraryoftaerus.substack.com/p/lotin0002-first-human-facing-catalogue">
+              Dispatch LOT:IN:0002
+            </a>
+            was issued to record the first human-facing catalogue page.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:IN:0003</p>
+          <p>
+            <a href="https://libraryoftaerus.substack.com/p/lotin0003-why-some-records-remain">
+              Dispatch LOT:IN:0003
+            </a>
+            was issued to explain why named records may remain sealed, partial,
+            or pending before full public release.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:AU:0001</p>
+          <p>
+            An audio version of LOT:IN:0003 was added as the first
+            podcast-style dispatch for accessible listening.
+          </p>
+        </article>
+        <article class="recovery-row">
+          <p>Year 0 PU / Day 002</p>
+          <p>LOT:DN:0004</p>
+          <p>
+            A face-hidden sealed-records header image was prepared so Kay's
+            work can appear publicly without creating inconsistent portraits.
+          </p>
+        </article>
         <article class="recovery-row">
           <p>Year 0 PU / Day 002</p>
           <p>SAA:WE:0007</p>
